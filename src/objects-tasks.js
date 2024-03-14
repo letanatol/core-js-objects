@@ -135,7 +135,7 @@ function makeImmutable(obj) {
 
 /**
  * Returns a word from letters whose positions are provided as an object.
- *
+ *Возвращает слово из букв, позиции которых указаны как объект.
  * @param {Object} lettersObject - An object where keys are letters and values are arrays of positions
  * @return {string} - The constructed word
  *
@@ -143,8 +143,18 @@ function makeImmutable(obj) {
  *    makeWord({ a: [0, 1], b: [2, 3], c: [4, 5] }) => 'aabbcc'
  *    makeWord({ H:[0], e: [1], l: [2, 3, 8], o: [4, 6], W:[5], r:[7], d:[9]}) => 'HelloWorld'
  */
-function makeWord(/* lettersObject */) {
-  throw new Error('Not implemented');
+function makeWord(lettersObject) {
+  const lengthLetter = Math.max(...Object.values(lettersObject).flat());
+
+  const emptyArray = Array.from({ length: lengthLetter + 1 }, () => '');
+
+  Object.entries(lettersObject).forEach(([letter, array]) => {
+    array.forEach((index) => {
+      emptyArray[index] = letter;
+    });
+  });
+
+  return emptyArray.join('');
 }
 
 /**
