@@ -48,7 +48,7 @@ function mergeObjects(objects) {
 
 /**
  * Removes a properties from an object.
- *
+ *Удаляет свойства из объекта
  * @param {Object} obj - The object from which to remove the property
  * @param {Array} keys - The keys of the properties to remove
  * @return {Object} - The object with the specified key removed
@@ -59,8 +59,18 @@ function mergeObjects(objects) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, 'age') => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const newObject = { ...obj };
+
+  if (Array.isArray(keys)) {
+    keys.forEach((item) => {
+      delete newObject[item];
+    });
+  } else {
+    delete newObject[keys];
+  }
+
+  return newObject;
 }
 
 /**
