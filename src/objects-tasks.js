@@ -115,7 +115,7 @@ function isEmptyObject(obj) {
 
 /**
  * Makes the source object immutable by preventing any changes to its properties.
- *
+ *Делает исходный объект неизменным, предотвращая любые изменения его свойств.
  * @param {Object} obj - The source object to make immutable
  * @return {Object} - The immutable version of the object
  *
@@ -129,8 +129,8 @@ function isEmptyObject(obj) {
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-function makeImmutable(/* obj */) {
-  throw new Error('Not implemented');
+function makeImmutable(obj) {
+  return Object.freeze(obj);
 }
 
 /**
