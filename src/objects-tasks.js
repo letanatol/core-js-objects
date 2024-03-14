@@ -100,7 +100,8 @@ function compareObjects(obj1, obj2) {
 /**
  * Checks if the source object is empty.
  * Returns true if the object contains no enumerable own properties, false otherwise.
- *
+ *Проверяет, пуст ли исходный объект.
+ * Возвращает true, если объект не содержит перечислимых собственных свойств, false в противном случае.
  * @param {Object} obj - The object to check
  * @return {boolean} - True if the object is empty, false otherwise
  *
@@ -108,8 +109,8 @@ function compareObjects(obj1, obj2) {
  *    isEmptyObject({}) => true
  *    isEmptyObject({a: 1}) => false
  */
-function isEmptyObject(/* obj */) {
-  throw new Error('Not implemented');
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0;
 }
 
 /**
