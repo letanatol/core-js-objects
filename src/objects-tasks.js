@@ -25,6 +25,8 @@ function shallowCopy(obj) {
 /**
  * Merges array of objects into a single object. If there are overlapping keys, the values
  * should be summed.
+ * Объединение массива объектов в один объект. Если есть перекрывающиеся ключи, значения
+ * следует суммировать.
  *
  * @param {Object[]} objects - The array of objects to merge
  * @return {Object} - The merged object
@@ -33,8 +35,15 @@ function shallowCopy(obj) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  return objects.reduce((acc, index) => {
+    Object.entries(index).forEach((item) => {
+      const key = item[0];
+      const value = item[1];
+      acc[key] = (acc[key] || 0) + value;
+    });
+    return acc;
+  }, {});
 }
 
 /**
