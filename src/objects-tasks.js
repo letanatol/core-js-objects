@@ -76,7 +76,8 @@ function removeProperties(obj, keys) {
 /**
  * Compares two source objects. Returns true if the objects are equal and false otherwise.
  * There are no nested objects.
- *
+ *Сравнивает два исходных объекта. Возвращает true, если объекты одинаковы и неверны.
+ * Нет вложенных объектов
  * @param {Object} obj1 - The first object to compare
  * @param {Object} obj2 - The second object to compare
  * @return {boolean} - True if the objects are equal, false otherwise
@@ -85,8 +86,15 @@ function removeProperties(obj, keys) {
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 2}) => true
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 3}) => false
  */
-function compareObjects(/* obj1, obj2 */) {
-  throw new Error('Not implemented');
+function compareObjects(obj1, obj2) {
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  return keys1.every((key) => obj1[key] === obj2[key]);
 }
 
 /**
