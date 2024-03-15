@@ -247,7 +247,7 @@ function getJSON(obj) {
 
 /**
  * Returns the object of specified type from JSON representation
- *
+ *Возвращает объект указанного типа из представления JSON
  * @param {Object} proto
  * @param {string} json
  * @return {object}
@@ -256,9 +256,18 @@ function getJSON(obj) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const parsedObj = JSON.parse(json);
+  const newObj = Object.create(proto);
+  Object.assign(newObj, parsedObj);
+  return newObj;
 }
+
+// function fromJSON(proto, json) {
+//   const parsedObj = JSON.parse(json);
+//   const newObj = Object.setPrototypeOf(parsedObj, proto);
+//   return newObj;
+// }
 
 /**
  * Sorts the specified array by country name first and city name
