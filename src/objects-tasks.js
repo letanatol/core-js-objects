@@ -310,6 +310,9 @@ function sortCitiesArray(arr) {
  * Groups elements of the specified array by key.
  * Returns multimap of keys extracted from array elements via keySelector callback
  * and values extracted via valueSelector callback.
+ * Группирует элементы заданного массива по ключам.
+ * Возвращает multimap ключей, извлеченных из элементов массива с помощью обратного вызова keySelector
+ * и значения, извлекаемые с помощью обратного вызова valueSelector.
  * See: https://en.wikipedia.org/wiki/Multimap
  *
  * @param {array} array
@@ -336,8 +339,21 @@ function sortCitiesArray(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const newMap = new Map();
+
+  array.forEach((item) => {
+    const key = keySelector(item);
+    const value = valueSelector(item);
+
+    if (newMap.has(key)) {
+      newMap.get(key).push(value);
+    } else {
+      newMap.set(key, [value]);
+    }
+  });
+
+  return newMap;
 }
 
 /**
