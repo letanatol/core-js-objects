@@ -232,6 +232,7 @@ Rectangle.prototype.getArea = function area() {
 
 /**
  * Returns the JSON representation of specified object
+ *Возвращает представление JSON указанного объекта
  *
  * @param {object} obj
  * @return {string}
@@ -240,8 +241,8 @@ Rectangle.prototype.getArea = function area() {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 /**
