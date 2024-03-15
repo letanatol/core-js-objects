@@ -210,7 +210,7 @@ function sellTickets(queue) {
 
 /**
  * Returns the rectangle object with width and height parameters and getArea() method
- *
+ *Возвращает прямоугольный объект с параметрами ширины и высоты и методом getArea()
  * @param {number} width
  * @param {number} height
  * @return {Object}
@@ -221,9 +221,14 @@ function sellTickets(queue) {
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
 }
+
+Rectangle.prototype.getArea = function area() {
+  return this.width * this.height;
+};
 
 /**
  * Returns the JSON representation of specified object
