@@ -163,6 +163,11 @@ function makeWord(lettersObject) {
  * The ticket costs 25. Customers pay with bills of 25, 50, or 100.
  * Initially the seller has no money for change.
  * Return true if the seller can sell tickets, false otherwise
+ * Существует очередь за билетами на популярный фильм.
+ * Продавец билетов продает один билет за раз строго по порядку и дает сдачу.
+ * Стоимость билета 25. Клиенты оплачивают счета по 25, 50 или 100.
+ * Первоначально у продавца не было денег на изменение.
+ * Возврат истинный, если продавец может продать билеты, ложный иначе
  *
  * @param {number[]} queue - The array representing the bills each customer pays with
  * @return {boolean} - True if the seller can sell tickets to everyone, false otherwise
@@ -171,8 +176,36 @@ function makeWord(lettersObject) {
  *    sellTickets([25, 25, 50]) => true
  *    sellTickets([25, 100]) => false (The seller does not have enough money to give change.)
  */
-function sellTickets(/* queue */) {
-  throw new Error('Not implemented');
+function sellTickets(queue) {
+  let cash25 = 0;
+  let cash50 = 0;
+  let isPay = true;
+
+  queue.forEach((cent) => {
+    if (!isPay) return;
+
+    if (cent === 25) {
+      cash25 += 25;
+    } else if (cent === 50) {
+      if (cash25 >= 25) {
+        cash25 -= 25;
+        cash50 += 50;
+      } else {
+        isPay = false;
+      }
+    } else if (cent === 100) {
+      if (cash25 >= 25 && cash50 >= 50) {
+        cash25 -= 25;
+        cash50 -= 50;
+      } else if (cash25 >= 75) {
+        cash25 -= 75;
+      } else {
+        isPay = false;
+      }
+    }
+  });
+
+  return isPay;
 }
 
 /**
